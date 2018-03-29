@@ -1,8 +1,17 @@
 ## git命令
 
+- 参考资料
+    - git常用命令
+        [http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+
+    - git工作流程
+        [http://www.ruanyifeng.com/blog/2015/12/git-workflow.html](http://www.ruanyifeng.com/blog/2015/12/git-workflow.html)
+
 - 初始化git仓库
 ```
     git init
+
+    git init [project-name]     // 新建一个目录，将其初始化为Git代码库
 ```   
 
 - 查看当前路径
@@ -289,4 +298,25 @@
 - 更新远程新分支
 ```
     git remote update origin --prune
+```
+
+- 查看git的命令目录地址
+```
+    git --exec-path
+```
+
+- 显示当前的Git配置
+```
+    git config --list
+```
+
+- 编辑Git配置文件
+```
+    git config -e [--global]
+```
+
+- 设置提交代码时的用户信息
+```
+    git config [--global] user.name "[name]"
+    git config [--global] user.email "[email address]"
 ```
