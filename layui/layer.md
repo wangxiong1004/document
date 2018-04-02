@@ -15,6 +15,22 @@
     });  
 ```
 
+#### 常用示例
+```
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    
+        layer.open({
+            type: 1,
+            content: '',
+            skin: 'demo',
+            title: false,
+            resize: false,
+            success: function() {}
+        });
+    });
+```
+
 --- 
 
 #### 常用参数
@@ -177,6 +193,61 @@
 
     // 监听窗口拉伸动作
     resizing: function(layero) {
-        
+
     }
+```
+
+- 层叠顺序: zIndex
+
+- 触发拖动的元素: move - String/DOM/Boolean
+> 默认：'.layui-layer-title' 默认是触发标题区域拖拽
+```
+    move: false // 不允许拖动
+
+    move: '.move-dom'
+```
+
+- 是否允许拖拽到窗口外: moveOut - Boolean
+> 默认只能在窗口内拖拽，如果你想让拖到窗外，那么设定moveOut: true即可
+```
+    moveOut: true   // 允许拖到窗外
+```
+
+- 拖动完毕后的回调方法: moveEnd - Function
+```
+    moveEnd: function(layero) {}
+```
+
+- 回调
+```
+    // 弹窗后的成功回调 : layero: 当前层DOM  index: 当前层索引
+    success: function(layero, index) {}
+
+    // 确定按钮回调方法
+    yes: function(index, layero) {
+        layer.close(index); // 如果设定了yes回调，需进行手工关闭
+    }
+
+    // 右上角关闭按钮触发的回调
+    cancel: function(index, layero) {
+        return false;   // 不关闭
+    }
+
+    // 层销毁后触发的回调
+    > 无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。
+    end: function() {}
+
+    // full/min/restore -分别代表最大化、最小化、还原 后触发的回调
+    full: function(layero) {}
+
+    min: function(layero) {}
+
+    restore: function(layero) {}
+```
+
+- 初始化就绪: layer.ready(callback)
+```
+    layer.ready(function() {    // 页面一打开就执行弹层
+        layer.msg();
+    })
 ```
