@@ -1,0 +1,107 @@
+创建项目： vue init webpack-simple vue-router
+
+运行项目
+cd vue-router
+cnpm i
+npm run dev
+
+下载
+cnpm i vue-router -S
+cnpm i mint-ui -S
+
+配置
+<router-link to="/home"></router-link>  // 常规写法
+
+<router-link :to="{name='home'}"></router-link>     // 路由名称
+
+<router-view></router-view>
+
+
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+import Home from 'Home.vue';
+
+const routes = [{
+    path: '/home',
+    name: 'home',
+    component: Home
+}, {
+    path: '*',
+    redirect: '/home'   // 重定向
+}];
+
+const router = new VueRouter({
+    routes
+});
+
+new Vue({
+  el: '#app',
+  router,
+  render: h => h(App)
+})
+
+// 两者等同
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app);
+
+
+// 路由重定向
+example: https://github.com/vuejs/vue-router/blob/next/examples/redirect/app.js
+{
+    path: '*',
+    redirect: '/home'   // 重定向到一个路由
+}
+
+{
+    path: '*',
+    redirect: {     // 命名路由
+        name: 'home'
+    }
+}
+
+{
+    path: '*',
+    redirect: to => {   // 动态返回重定向目标：
+        // 方法接收 目标路由 作为参数
+        // return 重定向的 字符串路径/路径对象
+
+        const { hash, params, query } = to;
+
+        if (query.to === 'home') {
+            return {path: '/home', query: null};
+        }
+        if (hash === '#baz') {
+            return {name: 'baz', hash: ''}
+        }
+        if (params.id) {
+            return '/with-params/:id'
+        } else {
+            return '/home';
+        }
+    }
+}
+
+
+// 别名，当访问/user时，URL会保持为/user,但是路由匹配则为/home,就像用户访问/home一样
+『别名』的功能让你可以自由地将 UI 结构映射到任意的 URL，而不是受限于配置的嵌套路由结构。
+example: https://github.com/vuejs/vue-router/blob/next/examples/route-alias/app.js
+{
+    path: '/home',
+    component: Home,
+    alias: '/user'  // 别名
+}
+
+{
+    path: '/home',
+    component: Home,
+    alias: ['/index', '/default']  // 多个别名
+}
+
+// 激活的class设置
+const router =  new VueRouter({
+    linkActiveClass: 'active'   // 激活的class
+})
