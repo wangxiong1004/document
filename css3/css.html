@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3-gradient</title>
+    <style>
+        .example {
+            width: 150px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+   <style>
+       .example1 {
+            /* background:-webkit-gradient(linear,0 50%,100% 50%,from(#ace),to(#f96)); */
+            background: -webkit-linear-gradient(top, #ccc, #000);
+       }
+   </style>
+    <div class="example example1"></div>
+
+    <div id="test">hello world</div>
+
+    <script>
+        var doc = document.getElementById('test');
+
+        var ele = document.getElementsByClassName('class1');
+
+        var els = document.querySelector('.main');
+
+        var eles = document.querySelectorAll('#base');
+
+        
+        
+        var addClassName = function(e) {
+            e.srcElement.className = 'example1';
+
+            console.log(e.srcElement.nodeType);
+        }
+
+        doc.onclick = addClassName;
+    </script>
+</body>
+</html>
+
+<!-- 
+    mozilla内核：
+    -moz-linear-gradient( [<point> || <angle>,]? <stop>, <stop> [, <stop>]* )
+
+    webkit内核：
+    -webkit-linear-gradient( [<point> || <angle>,]? <stop>, <stop> [, <stop>]* )//最新发布书写语法
+    -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) //老式语法书写规则
+
+    type: linear(线性渐变)、radial(径向渐变)
+
+    Opera：
+    -o-linear-gradient([<point> || <angle>,]? <stop>, <stop> [, <stop>]); /* Opera 11.10+ */
+
+    ie:
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB);/*IE<9>*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";/*IE8+*/
+ -->
